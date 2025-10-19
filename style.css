@@ -1,0 +1,767 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Game Container */
+.game-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Title Screen */
+#title-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+}
+
+.title-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    width: 100%;
+}
+
+.game-title {
+    font-size: 3rem;
+    color: #ff6b9d;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+.game-subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.characters-intro {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.character {
+    text-align: center;
+}
+
+.character-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.bobo-avatar {
+    background: linear-gradient(135deg, #ffb3d1, #ff9ec7);
+    border: 3px solid #ff6b9d;
+}
+
+.coco-avatar {
+    background: linear-gradient(135deg, #d4a574, #c19a6b);
+    border: 3px solid #8b4513;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Game Button */
+.game-button {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+}
+
+.game-button:active {
+    transform: translateY(0);
+}
+
+/* Floating Hearts Animation */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-hearts::before,
+.floating-hearts::after {
+    content: '💕';
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s infinite linear;
+    opacity: 0.7;
+}
+
+.floating-hearts::before {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-hearts::after {
+    right: 10%;
+    animation-delay: 3s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Level Headers */
+.level-header {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.level-header h2 {
+    color: #ff6b9d;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.level-progress {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b9d, #ff8fab);
+    transition: width 0.5s ease;
+}
+
+/* Level Content */
+.level-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Chat System */
+.chat-section {
+    margin-bottom: 30px;
+}
+
+.chat-container {
+    border: 2px solid #ff6b9d;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.message-content {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 70%;
+}
+
+.bobo-message .message-content {
+    background: #ff6b9d;
+    color: white;
+    margin-left: auto;
+}
+
+.bobo-message {
+    flex-direction: row-reverse;
+}
+
+.bobo-message .message-avatar {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.chat-input {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.chat-input button {
+    background: #ff6b9d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.chat-input button:hover {
+    background: #ff5582;
+}
+
+/* Flight Booking */
+.flight-section h3 {
+    color: #ff6b9d;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.flight-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.flight-option {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.flight-option:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b9d;
+}
+
+.flight-option h4 {
+    color: #ff6b9d;
+    margin-bottom: 10px;
+}
+
+.flight-option p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.book-flight {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-flight:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+/* Castle Selection */
+.quest-story {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.castles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.castle {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.castle:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b9d;
+}
+
+.castle-image {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.castle1 {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+}
+
+.castle2 {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+}
+
+.castle3 {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+}
+
+.clue-box {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid #ffc107;
+}
+
+/* Battle System */
+.battle-area {
+    text-align: center;
+}
+
+.battle-story {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.battle-interface {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.enemy-area {
+    margin-bottom: 30px;
+}
+
+.enemy {
+    display: inline-block;
+    background: linear-gradient(135deg, #6c757d, #495057);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    min-width: 200px;
+}
+
+.enemy-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    position: relative;
+}
+
+.enemy-health {
+    text-align: center;
+}
+
+.health-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #20c997);
+    transition: width 0.3s ease;
+}
+
+.battle-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.battle-button {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.battle-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+.battle-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.player-stats {
+    text-align: center;
+}
+
+.stat {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* Romantic Scene */
+.romantic-scene {
+    text-align: center;
+    padding: 40px;
+}
+
+.characters-together {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.character-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.kiss-scene {
+    margin: 30px 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.kiss-scene.active {
+    opacity: 1;
+}
+
+.kiss-animation {
+    font-size: 3rem;
+    animation: kissPulse 1s ease-in-out infinite;
+}
+
+@keyframes kissPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.celebration-messages {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px 0;
+    color: white;
+}
+
+.celebration-messages h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Fireworks */
+.fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: firework 1s ease-out forwards;
+}
+
+@keyframes firework {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Game UI */
+.game-ui {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.ui-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 20px;
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.level-indicator {
+    font-weight: bold;
+    color: #ff6b9d;
+    font-size: 1.1rem;
+}
+
+.love-meter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.love-bar {
+    width: 150px;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.love-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b9d, #ff8fab);
+    transition: width 0.5s ease;
+}
+
+/* Sparkle Effects */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: sparkle 1s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .game-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .characters-intro {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .level-content {
+        padding: 20px;
+    }
+    
+    .flight-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .castles {
+        grid-template-columns: 1fr;
+    }
+    
+    .battle-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .characters-together {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .ui-top {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .love-bar {
+        width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen {
+        padding: 10px;
+    }
+    
+    .title-content {
+        padding: 20px;
+    }
+    
+    .game-title {
+        font-size: 1.5rem;
+    }
+    
+    .level-content {
+        padding: 15px;
+    }
+}
