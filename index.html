@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Coco & Bobo: Long Distance Love Game 💕</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="title-container">
+                <h1>💕 Coco & Bobo 💕</h1>
+                <h2>Long Distance Love Game</h2>
+                <div class="character-preview">
+                    <div class="bobo-preview">
+                        <div class="character bobo"></div>
+                        <p>Bobo from Delhi</p>
+                    </div>
+                    <div class="heart-separator">💕</div>
+                    <div class="coco-preview">
+                        <div class="character coco"></div>
+                        <p>Coco from Dubai</p>
+                    </div>
+                </div>
+                <button id="start-btn" class="game-btn">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Level 1: Connecting Hearts -->
+        <div id="level1-screen" class="screen">
+            <div class="level-header">
+                <h2>Level 1: Connecting Hearts 💌</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 33%"></div>
+                </div>
+            </div>
+            
+            <div class="level-content">
+                <!-- KittyGram Chat Section -->
+                <div id="kittygram-section" class="game-section active">
+                    <h3>📱 KittyGram Chat</h3>
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="chat-profile">
+                                <div class="profile-pic coco-pic"></div>
+                                <span>Coco ❤️</span>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Messages will be added dynamically -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="message-input" placeholder="Type your message...">
+                            <button id="send-btn">Send 💕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flight Booking Section -->
+                <div id="flight-section" class="game-section">
+                    <h3>✈️ Book Your Flight</h3>
+                    <div class="flight-booking">
+                        <div class="flight-form">
+                            <div class="form-group">
+                                <label>From:</label>
+                                <select id="from-city">
+                                    <option value="">Select departure city</option>
+                                    <option value="delhi">Delhi, India</option>
+                                    <option value="mumbai">Mumbai, India</option>
+                                    <option value="bangalore">Bangalore, India</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>To:</label>
+                                <select id="to-city">
+                                    <option value="">Select destination</option>
+                                    <option value="dubai">Dubai, UAE</option>
+                                    <option value="abu-dhabi">Abu Dhabi, UAE</option>
+                                    <option value="sharjah">Sharjah, UAE</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Date:</label>
+                                <input type="date" id="flight-date">
+                            </div>
+                            <button id="book-flight-btn" class="game-btn">Book Flight 🎫</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2: Tower Quest -->
+        <div id="level2-screen" class="screen">
+            <div class="level-header">
+                <h2>Level 2: The Tower Quest 🏰</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 66%"></div>
+                </div>
+            </div>
+            
+            <div class="level-content">
+                <div class="story-text">
+                    <p>You've arrived in Dubai! But Coco is trapped in one of these mysterious towers. Use the clues to find him!</p>
+                </div>
+                
+                <div class="towers-container">
+                    <div class="tower" data-tower="1">
+                        <div class="tower-building tower1"></div>
+                        <p>Crystal Tower</p>
+                        <button class="tower-btn">Search Here</button>
+                    </div>
+                    <div class="tower" data-tower="2">
+                        <div class="tower-building tower2"></div>
+                        <p>Golden Castle</p>
+                        <button class="tower-btn">Search Here</button>
+                    </div>
+                    <div class="tower" data-tower="3">
+                        <div class="tower-building tower3"></div>
+                        <p>Love Tower</p>
+                        <button class="tower-btn">Search Here</button>
+                    </div>
+                </div>
+                
+                <div class="clue-section">
+                    <h4>💡 Clue:</h4>
+                    <p id="tower-clue">"Where hearts unite and love takes flight, seek the tower that shines so bright with golden light."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3: Battle for Love -->
+        <div id="level3-screen" class="screen">
+            <div class="level-header">
+                <h2>Level 3: Battle for Love ⚔️</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 100%"></div>
+                </div>
+            </div>
+            
+            <div class="level-content">
+                <div class="battle-area">
+                    <div class="player-section">
+                        <div class="character bobo-battle"></div>
+                        <div class="health-bar">
+                            <div class="health" id="player-health" style="width: 100%"></div>
+                        </div>
+                        <p>Bobo ❤️</p>
+                    </div>
+                    
+                    <div class="enemies-section">
+                        <div class="enemy" id="enemy1">
+                            <div class="enemy-sprite enemy1-sprite"></div>
+                            <div class="enemy-health">
+                                <div class="health" style="width: 100%"></div>
+                            </div>
+                            <p>Jealousy Monster</p>
+                        </div>
+                        <div class="enemy" id="enemy2">
+                            <div class="enemy-sprite enemy2-sprite"></div>
+                            <div class="enemy-health">
+                                <div class="health" style="width: 100%"></div>
+                            </div>
+                            <p>Distance Demon</p>
+                        </div>
+                        <div class="enemy" id="enemy3">
+                            <div class="enemy-sprite enemy3-sprite"></div>
+                            <div class="enemy-health">
+                                <div class="health" style="width: 100%"></div>
+                            </div>
+                            <p>Doubt Dragon</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="battle-controls">
+                    <button class="battle-btn" data-action="attack">💖 Love Attack</button>
+                    <button class="battle-btn" data-action="heal">✨ Heal</button>
+                    <button class="battle-btn" data-action="special">💕 Special Move</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="screen">
+            <div class="ending-content">
+                <h2>🎉 Happy Reunion! 🎉</h2>
+                
+                <div class="reunion-scene">
+                    <div class="character bobo-ending"></div>
+                    <div class="character coco-ending"></div>
+                </div>
+                
+                <div class="celebration-text">
+                    <p>Bobo and Coco are finally together! 💕</p>
+                    <p>Happy Birthday and Happy Diwali! 🎂✨</p>
+                </div>
+                
+                <button id="kiss-btn" class="game-btn">💋 Kiss Scene</button>
+                <button id="restart-btn" class="game-btn">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Particle Effects Container -->
+        <div id="particles-container"></div>
+        
+        <!-- Fireworks Container -->
+        <div id="fireworks-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
