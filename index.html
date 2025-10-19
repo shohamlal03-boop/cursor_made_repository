@@ -100,23 +100,39 @@
                 </div>
                 
                 <div class="castle-selection">
-                    <h3>🏰 Choose the Correct Castle</h3>
+                    <h3>🏰 Choose the Correct Tower</h3>
                     <div class="castles">
                         <div class="castle" data-correct="false">
-                            <div class="castle-image castle1"></div>
-                            <p>Castle of Roses</p>
+                            <div class="castle-image castle1">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop" alt="Gothic Tower" />
+                                <div class="castle-overlay">
+                                    <span class="castle-name">Tower of Shadows</span>
+                                </div>
+                            </div>
+                            <p>Gothic Tower of Shadows</p>
                         </div>
                         <div class="castle" data-correct="true">
-                            <div class="castle-image castle2"></div>
-                            <p>Castle of Hearts</p>
+                            <div class="castle-image castle2">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop" alt="Romantic Tower" />
+                                <div class="castle-overlay">
+                                    <span class="castle-name">Tower of Hearts</span>
+                                </div>
+                            </div>
+                            <p>Romantic Tower of Hearts</p>
                         </div>
                         <div class="castle" data-correct="false">
-                            <div class="castle-image castle3"></div>
-                            <p>Castle of Stars</p>
+                            <div class="castle-image castle3">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop" alt="Mystical Tower" />
+                                <div class="castle-overlay">
+                                    <span class="castle-name">Tower of Stars</span>
+                                </div>
+                            </div>
+                            <p>Mystical Tower of Stars</p>
                         </div>
                     </div>
                     <div class="clue-box">
-                        <p><strong>Clue:</strong> Look for the castle where love blooms eternal 💕</p>
+                        <p><strong>🔍 Clue:</strong> Look for the tower where our love story began - where hearts beat as one! 💕</p>
+                        <p><em>Coco left a message: "I'm waiting in the tower where we first said 'I love you'..."</em></p>
                     </div>
                 </div>
             </div>
@@ -136,35 +152,63 @@
             <div class="level-content">
                 <div class="battle-area">
                     <div class="battle-story">
-                        <p>Enemies block your path to Coco! Defeat them to reach your true love!</p>
+                        <h3>🏰 The Final Battle for Love</h3>
+                        <p>Dark forces have trapped Coco in the tower! As Bobo approaches, shadowy guardians emerge to block her path. She must use the power of love to defeat them and reach her beloved!</p>
                     </div>
                     
-                    <div class="battle-interface">
-                        <div class="enemy-area">
-                            <div class="enemy" id="enemy1">
-                                <div class="enemy-avatar"></div>
-                                <div class="enemy-health">
+                    <div class="battle-scene">
+                        <div class="battle-background">
+                            <div class="tower-silhouette"></div>
+                            <div class="moon"></div>
+                            <div class="stars"></div>
+                        </div>
+                        
+                        <div class="battle-characters">
+                            <div class="bobo-battle">
+                                <div class="character-sprite bobo-sprite"></div>
+                                <div class="character-name">Bobo 💕</div>
+                                <div class="character-health">
                                     <div class="health-bar">
-                                        <div class="health-fill" style="width: 100%"></div>
+                                        <div class="health-fill" id="player-health" style="width: 100%"></div>
                                     </div>
-                                    <span>Shadow Guard</span>
+                                    <span>HP: <span id="player-hp-text">100</span>/100</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vs-indicator">VS</div>
+                            
+                            <div class="enemy-battle">
+                                <div class="character-sprite enemy-sprite"></div>
+                                <div class="character-name">Shadow Guardian 👹</div>
+                                <div class="character-health">
+                                    <div class="health-bar">
+                                        <div class="health-fill" id="enemy-health" style="width: 100%"></div>
+                                    </div>
+                                    <span>HP: <span id="enemy-hp-text">100</span>/100</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="battle-actions">
-                            <button id="attack-btn" class="battle-button">⚔️ Attack</button>
-                            <button id="heal-btn" class="battle-button">💖 Heal</button>
-                            <button id="special-btn" class="battle-button">✨ Love Power</button>
+                            <button id="attack-btn" class="battle-button attack-btn">
+                                <span class="button-icon">⚔️</span>
+                                <span class="button-text">Attack</span>
+                                <span class="button-desc">Strike with determination</span>
+                            </button>
+                            <button id="heal-btn" class="battle-button heal-btn">
+                                <span class="button-icon">💖</span>
+                                <span class="button-text">Heal</span>
+                                <span class="button-desc">Restore with love</span>
+                            </button>
+                            <button id="special-btn" class="battle-button special-btn">
+                                <span class="button-icon">✨</span>
+                                <span class="button-text">Love Power</span>
+                                <span class="button-desc">Channel pure love energy</span>
+                            </button>
                         </div>
                         
-                        <div class="player-stats">
-                            <div class="stat">
-                                <span>Health:</span>
-                                <div class="health-bar">
-                                    <div class="health-fill" id="player-health" style="width: 100%"></div>
-                                </div>
-                            </div>
+                        <div class="battle-log" id="battle-log">
+                            <div class="log-entry">The battle begins! Bobo faces the Shadow Guardian! 💕⚔️</div>
                         </div>
                     </div>
                 </div>
@@ -200,7 +244,7 @@
                     </div>
                     
                     <div class="celebration-messages">
-                        <h3>Happy Birthday, Coco! 🎂</h3>
+                        <h3>Happy Birthday, Bobo! 🎂</h3>
                         <p>May our love shine brighter than Diwali fireworks! ✨</p>
                     </div>
                     

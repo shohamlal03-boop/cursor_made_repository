@@ -414,20 +414,58 @@ body {
     height: 120px;
     border-radius: 10px;
     margin-bottom: 15px;
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
 }
 
-.castle1 {
-    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+.castle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: filter 0.3s ease;
 }
 
-.castle2 {
-    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+.castle:hover .castle-image img {
+    filter: brightness(1);
 }
 
-.castle3 {
-    background: linear-gradient(135deg, #a8edea, #fed6e3);
+.castle-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(255, 143, 171, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.castle:hover .castle-overlay {
+    opacity: 1;
+}
+
+.castle-name {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.castle1 .castle-overlay {
+    background: linear-gradient(135deg, rgba(108, 117, 125, 0.8), rgba(73, 80, 87, 0.8));
+}
+
+.castle2 .castle-overlay {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(255, 143, 171, 0.8));
+}
+
+.castle3 .castle-overlay {
+    background: linear-gradient(135deg, rgba(168, 237, 234, 0.8), rgba(254, 214, 227, 0.8));
 }
 
 .clue-box {
@@ -444,84 +482,196 @@ body {
 }
 
 .battle-story {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 20px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 25px;
     border-radius: 15px;
     margin-bottom: 30px;
     font-size: 1.1rem;
-    color: #555;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.battle-interface {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.battle-story h3 {
+    color: #ff6b9d;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
 }
 
-.enemy-area {
-    margin-bottom: 30px;
+.battle-scene {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    min-height: 500px;
 }
 
-.enemy {
-    display: inline-block;
-    background: linear-gradient(135deg, #6c757d, #495057);
-    padding: 20px;
-    border-radius: 15px;
-    color: white;
-    min-width: 200px;
+.battle-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
 }
 
-.enemy-avatar {
+.tower-silhouette {
+    position: absolute;
+    bottom: 0;
+    right: 20%;
+    width: 150px;
+    height: 300px;
+    background: linear-gradient(180deg, #2c3e50, #34495e);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+    opacity: 0.7;
+}
+
+.moon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #dc3545, #c82333);
+    background: radial-gradient(circle, #f8f9fa, #e9ecef);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(248, 249, 250, 0.5);
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.battle-characters {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+    min-height: 200px;
+}
+
+.bobo-battle, .enemy-battle {
+    text-align: center;
+    flex: 1;
+    max-width: 200px;
+}
+
+.character-sprite {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     margin: 0 auto 15px;
     position: relative;
+    animation: battleFloat 2s ease-in-out infinite;
 }
 
-.enemy-health {
-    text-align: center;
+.bobo-sprite {
+    background: linear-gradient(135deg, #ffb3d1, #ff9ec7);
+    border: 4px solid #ff6b9d;
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+.enemy-sprite {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: 4px solid #dc3545;
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+}
+
+@keyframes battleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.character-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.character-health {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
 }
 
 .health-bar {
     width: 100%;
-    height: 8px;
-    background: #e0e0e0;
-    border-radius: 4px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
     overflow: hidden;
     margin: 5px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .health-fill {
     height: 100%;
     background: linear-gradient(90deg, #28a745, #20c997);
-    transition: width 0.3s ease;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+.vs-indicator {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: pulse 1s ease-in-out infinite;
 }
 
 .battle-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
 }
 
 .battle-button {
-    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
+    border: 2px solid #ff6b9d;
+    padding: 20px;
+    border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .battle-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4);
+    border-color: #ff8fab;
+}
+
+.battle-button:active {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
 }
 
 .battle-button:disabled {
@@ -530,13 +680,62 @@ body {
     transform: none;
 }
 
-.player-stats {
-    text-align: center;
+.button-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 5px;
 }
 
-.stat {
-    display: inline-block;
-    margin: 0 10px;
+.button-text {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.button-desc {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.attack-btn:hover {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    border-color: #dc3545;
+}
+
+.heal-btn:hover {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border-color: #28a745;
+}
+
+.special-btn:hover {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    border-color: #ff8fab;
+}
+
+.battle-log {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.log-entry {
+    color: white;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideIn 0.3s ease;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
 }
 
 /* Romantic Scene */
